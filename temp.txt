@@ -1,0 +1,8 @@
+SELECT
+ i,device_type_id,SUM(data_value) as data_value
+from (
+	SELECT a.i,b.device_type_id,a.device_id,MAX(a.data_value) as data_value from (
+		SELECT *,${num} - 1 - FLOOR(timestampdiff(MINUTE,data_time, ${endTime})/${per}) as i from awl_device_config_data where data_time <= ${endTime} and data_time > TIMESTAMPADD(MINUTE,-${per} * ${num}, ${endTime})
+	)a INNER JOIN awl_device_config b
+	on a.device_id = b.device_id GROUP BY b.device_type_id,a.i,a.device_id
+)c GROUP BY i,device_type_id
