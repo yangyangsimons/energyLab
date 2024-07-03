@@ -21,10 +21,10 @@
     <div :class="{ 'active': tabIndex == 1 }" @click="tabIndex = 1;">网测</div>
   </div>
   <div style="width: 100%; height: 29rem; display: flex; justify-content: center; align-items: center;">
-      <w-ls-count v-if="tabIndex == 0" :per="5" :num="15" :param-titles="['直流功率']" :param-ids="[16554]" height="28rem"
-        ></w-ls-count>
-      <w-ls-count v-if="tabIndex == 1" :per="5" :num="15" :param-titles="['当前功率']" :param-ids="[16570]" height="28rem"
-        ></w-ls-count>
+    <w-ls-count v-if="tabIndex == 0" :per="5" :num="15" :param-titles="['直流功率']" :param-ids="[16554]"
+      height="28rem"></w-ls-count>
+    <w-ls-count v-if="tabIndex == 1" :per="5" :num="15" :param-titles="['当前功率']" :param-ids="[16570]"
+      height="28rem"></w-ls-count>
   </div>
 </template>
 <script setup>
