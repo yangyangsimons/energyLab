@@ -67,7 +67,7 @@
 </template>
 
 <script setup>
-import { ref, watch, getCurrentInstance, onMounted, onUnmounted } from 'vue';
+
 import WAcdc from '../components/energylab/WAcdc.vue';
 import WMove from '../components/WMove.vue';
 import WWind from '../components/energylab/WWind.vue';

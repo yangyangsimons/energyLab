@@ -18,7 +18,7 @@ const routes = [
         path: "/chart2",
         component: () => import("../pages/chart/2.vue")
     },
-    
+
     {
         path: "/test",
         component: () => import("../pages/test.vue"),
@@ -40,6 +40,11 @@ const routes = [
         meta: { title: "后台首页" }
     },
     {
+        path: "/newhome",
+        component: () => import("../pages/newHome/NewHome.vue"),
+        meta: { title: "新首页" }
+    },
+    {
         path: "/opens",
         component: () => import("../pages/opens.vue"),
         meta: { title: "开关" }
@@ -48,7 +53,7 @@ const routes = [
         path: "/watch",
         component: () => import("../pages/1366x768watch.vue"),
         meta: { title: "运行监控" },
-        children:[
+        children: [
             {
                 path: "",
                 redirect: "/watch/bms"
@@ -80,11 +85,11 @@ const routes = [
             }
         ]
     },
-   {
-    path:"/:id(.*)*",
-    component: () => import("../pages/404.vue"),
-    meta: { title: "404页面" },
-   }
+    {
+        path: "/:id(.*)*",
+        component: () => import("../pages/404.vue"),
+        meta: { title: "404页面" },
+    }
 ]
 
 
@@ -97,7 +102,7 @@ const router = createRouter({
 
 
 
-router.afterEach(()=>{
+router.afterEach(() => {
     NProgress.done();
 });
 
@@ -107,17 +112,17 @@ router.beforeEach((to, from, next) => {
     NProgress.start();
     let title = [];
 
-    for(let item of to.matched){
-        if(!item.meta.title){
+    for (let item of to.matched) {
+        if (!item.meta.title) {
             break;
         }
         title.unshift(item.meta.title);
     }
 
-    if(title.length>0){
+    if (title.length > 0) {
         document.title = title.join(" - ");
     }
-    
+
     let checkLogin = to.matched.some(record => record.meta.auth);//是否需要验证登录
     //这里使用matched循环查找不直接使用to.meta的原因：多层嵌套路由情况下,逐级检查
     // console.debug(to.matched);
