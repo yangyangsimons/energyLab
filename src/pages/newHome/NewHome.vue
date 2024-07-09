@@ -11,8 +11,14 @@
                 <EnergyPortion />
             </div>
             <div class="center">
-                <div class="diagram"></div>
-                <div class="lineCharts"></div>
+                <div class="diagram">
+                    <Diagram />
+                </div>
+                <div class="lineCharts">
+                    <BMSCharts />
+                    <PressureCharts />
+                    <WindCharts />
+                </div>
                 <div class="pieCharts"></div>
             </div>
             <div class="rightSide"></div>
@@ -24,6 +30,10 @@
 import Bullet from './Bullet.vue';
 import EnergyWatch from './EnergyWatch.vue';
 import EnergyPortion from './charts/EnergyPortion.vue';
+import Diagram from './Diagram.vue';
+import BMSCharts from './charts/BMSCharts.vue';
+import PressureCharts from './charts/PressureCharts.vue';
+import WindCharts from './charts/WindCharts.vue';
 </script>
 <style lang="scss" scoped>
 .page {
@@ -37,7 +47,7 @@ import EnergyPortion from './charts/EnergyPortion.vue';
 }
 
 .header {
-    border: 1px solid yellow;
+    // border: 1px solid yellow;
     display: flex;
     align-items: center;
     height: 100px;
@@ -59,18 +69,18 @@ import EnergyPortion from './charts/EnergyPortion.vue';
 
 
 .main {
-    border: 1px solid red;
+    // border: 1px solid red;
     display: flex;
     flex: 1;
 
 
     .leftSide {
         width: 350px;
-        border: 1px solid #ccc;
+        // border: 1px solid #ccc;
     }
 
     .rightSide {
-        border: 1px solid #ccc;
+        // border: 1px solid #ccc;
         width: 350px;
     }
 
@@ -87,6 +97,14 @@ import EnergyPortion from './charts/EnergyPortion.vue';
 
         .lineCharts {
             flex: 1;
+            width: 100%;
+            height: 230px;
+            margin-bottom: 10px;
+            /* Add your line chart styling here */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #fff;
         }
 
         .pieCharts {

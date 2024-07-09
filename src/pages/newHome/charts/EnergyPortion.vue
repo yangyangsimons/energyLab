@@ -19,12 +19,17 @@ onMounted(() => {
     let chartDom = document.getElementById('chartContainer');
     const myChart = echarts.init(chartDom);
     let option = {
-        tooltip: {
-            trigger: 'item'
-        },
+        // tooltip: {
+        //     trigger: 'item'
+        // },
         legend: {
             orient: 'vertical',
-            left: 'left'
+            left: '75%',
+            top: '30%',
+            textStyle: {
+                color: '#fff',
+                fontSize: 18
+            }
         },
         series: [
             {
@@ -32,20 +37,23 @@ onMounted(() => {
                 type: 'pie',
                 radius: '50%',
                 data: [
-                    { value: 1048, name: 'Search Engine' },
-                    { value: 735, name: 'Direct' },
-                    { value: 580, name: 'Email' },
-                    { value: 484, name: 'Union Ads' },
-                    { value: 300, name: 'Video Ads' }
+                    { value: 1048, name: '储能' },
+                    { value: 735, name: '光电' },
+                    { value: 580, name: '风电' }
                 ],
-                emphasis: {
-                    itemStyle: {
-                        shadowBlur: 10,
-                        shadowOffsetX: 0,
-                        shadowColor: 'rgba(0, 0, 0, 0.5)'
-                    }
+                label: {
+                show: false,
+                position: 'inside',
+                textStyle: {
+                    color: '#fff',
+                    fontSize: 16
                 }
-            }
+            },
+            center: ['30%', '35%'],
+            width: '120%',
+            height: '120%',
+            },
+            
         ]
     };
     option && myChart.setOption(option);
@@ -79,9 +87,12 @@ function updateChartData(newValue) {
 </script>
 <style lang="scss" scoped>
     .energyPortionModule{
+        border: 1px solid rgb(14, 86, 155);
+        border-radius: 10px;
         width: 100%;
-        height: 300px;
+        height: 250px;
         color: #fff;
+        margin-top: 10px;
         .title {
         text-align: center;
         background-image: url(../../../assets/imgs/newhome/bg-bullet.png);
@@ -96,8 +107,7 @@ function updateChartData(newValue) {
         margin-top: 10px;
         width: 100%;
         height: 100%;
-        border: 1px solid rgb(14, 86, 155);
-        border-radius: 10px;
+        
     }
     }
    

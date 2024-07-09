@@ -91,7 +91,7 @@ export default {
             // flex-direction: column;
             // align-items: center;
             // justify-content: space-between;
-            height: 70px;
+            height: 65px;
 
             .bullet-title {
                 text-align: center;
@@ -112,22 +112,20 @@ export default {
                 // border-bottom-left-radius: 5px;
                 // border-bottom-right-radius: 5px;
 
-                div {
-                    font-size: 25px;
-                    height: 35px;
-                }
-
                 .number {
                     vertical-align: middle;
                     text-align: right;
-
+                    line-height: 30px;
+                    height: 30px;
+                    font-size: 23px;
                 }
 
                 .unit {
                     margin-left: 5px;
-                    vertical-align: baseline;
-                    font-size: 15px;
-                    line-height: 40px
+                    vertical-align: bottom;
+                    font-size: 10px;
+                    height: 30px;
+                    line-height: 30px
                 }
             }
         }
