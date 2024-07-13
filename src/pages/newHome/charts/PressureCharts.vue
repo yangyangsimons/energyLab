@@ -18,7 +18,7 @@ onMounted(() => {
     chartInstance.value = echarts.init(chartContainer4.value);
     chartInstance.value.setOption({
         title: {
-            text: 'Load Demand (W)',
+            text: 'Load Demand (kW)',
             textStyle: {
                 color: '#fff',
                 fontSize: 16,
@@ -100,7 +100,7 @@ onMounted(() => {
     // 监视特定参数的变化，并更新图表数据
     watch(() => awlStore.params["16486"], (newValue) => {
         console.log(awlStore.params)
-        updateChartData(newValue * 28);
+        updateChartData(newValue * 28 / 10);
     }, { immediate: true });
 });
 
@@ -130,7 +130,7 @@ function updateChartData(newValue) {
     display: flex;
     flex-direction: column;
     height: 100%;
-    width: 30%;
+    width: 23%;
     border-radius: 10px;
     border: 1px solid rgb(14, 86, 155);
     border-radius: 10px;

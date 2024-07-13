@@ -19,7 +19,7 @@ onMounted(() => {
     chartInstance.value = echarts.init(chartContainer2.value);
     chartInstance.value.setOption({
         title: {
-            text: 'ES Power (W)',
+            text: 'Wind Power (kW)',
             textStyle: {
                 color: '#fff',
                 fontSize: 16,
@@ -46,7 +46,7 @@ onMounted(() => {
             axisLabel: {
                 formatter: (value) => {
                     // 将时间戳格式化为仅显示分钟和秒
-                    return echarts.format.formatTime('mm', value);
+                    return echarts.format.formatTime('s', value);
                 },
 
             },
@@ -94,7 +94,7 @@ onMounted(() => {
             data: [],
             smooth: false,
             lineStyle: {
-                color: '#FADC58',
+                color: 'red',
                 width: 2
             }
         }]
@@ -103,7 +103,7 @@ onMounted(() => {
     // 监视特定参数的变化，并更新图表数据
     watch(() => awlStore.params["16554"], (newValue) => {
         console.log(awlStore.params)
-        updateChartData(4500 - newValue * 28);
+        updateChartData((newValue * 2 + 1500)*1.5);
     }, { immediate: true });
 });
 
@@ -133,7 +133,7 @@ function updateChartData(newValue) {
     display: flex;
     flex-direction: column;
     height: 100%;
-    width: 30%;
+    width: 24%;
     border: 1px solid rgb(14, 86, 155);
     border-radius: 10px;
 

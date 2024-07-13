@@ -1,7 +1,7 @@
 <template>
-    <div class="energyPortionModule">
-        <h2 class="title">能源占比</h2>
-        <div id="portionContainer9" ref="portionContainer9"></div>
+    <div class="usageModule">
+        <h2 class="title">用电占比</h2>
+        <div id="usageContainer" ref="usageContainer"></div>
     </div>
 </template>
 
@@ -16,7 +16,7 @@ const chartInstance = ref(null);
 const chartContainer = ref(null);
 
 onMounted(() => {
-    let chartDom = document.getElementById('portionContainer9');
+    let chartDom = document.getElementById('usageContainer');
     const myChart = echarts.init(chartDom);
     let option = {
         // tooltip: {
@@ -24,7 +24,7 @@ onMounted(() => {
         // },
         legend: {
             orient: 'vertical',
-            left: '75%',
+            left: '65%',
             top: '30%',
             textStyle: {
                 color: '#fff',
@@ -34,13 +34,12 @@ onMounted(() => {
         series: [
             {
                 name: 'Access From',
-                type: 'pie', 
-                radius: '50%',
+                type: 'pie',
+                radius: ['50%', '60%'],
                 data: [
-                    {value:250, name:'储能'},
-                    { value: 1048, name: '风电' },
-                    { value: 735, name: '光电' },
-                    { value: 580, name: '电网' }
+                    { value: 1548, name: '生产用电' },
+                    { value: 535, name: '生活用电' },
+                    { value: 980, name: '商业用电' }
                 ],
                 label: {
                 show: false,
@@ -68,13 +67,14 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-    .energyPortionModule{
-        border: 1px solid rgb(14, 86, 155);
-        border-radius: 10px;
-        width: 100%;
-        height: 250px;
-        color: #fff;
-        margin-top: 10px;
+    .usageModule{
+        display: flex;
+    flex-direction: column;
+    height: 250px;
+    width: 37%;
+    border: 1px solid rgb(14, 86, 155);
+    border-radius: 10px;
+    color: #fff;
         .title {
         
         text-align: center;
@@ -86,7 +86,7 @@ onMounted(() => {
         background-size: cover;
 
         }
-        #portionContainer9 {
+        #usageContainer {
         margin-top: 10px;
         width: 100%;
         height: 100%;

@@ -6,8 +6,8 @@
             <div class="bullet" v-for="(bullet, index) in bullets" :key="index">
                 <div class="bullet-title">{{ bullet.title }}</div>
                 <div class="bullet-content">
-                    <div class="normal">5</div>
-                    <div class="broke">1</div>
+                    <div class="normal">{{bullet.normal}}</div>
+                    <div class="broke">{{bullet.broke}}</div>
                 </div>
             </div>
         </div>
@@ -25,26 +25,39 @@ export default {
                 {
                     title: "风机",
                     content: "Content for bullet 1",
+                    normal: 2,
+                    broke: 3,
                 },
                 {
                     title: "光伏",
                     content: "",
+                    normal: 5,
+                    broke: 1,
+
                 },
                 {
                     title: "储能",
                     content: "Content for bullet 3",
+                    normal: 2,
+                    broke: 0,
                 },
                 {
                     title: "充电桩",
                     content: "Content for bullet 4",
+                    normal: 1,
+                    broke: 0
                 },
                 {
                     title: "空调",
                     content: "Content for bullet 5",
+                    normal: 8,
+                    broke: 0,
                 },
                 {
                     title: "灯具",
                     content: "Content for bullet 6",
+                    normal: 20,
+                    broke: 0,
                 },
             ],
         };

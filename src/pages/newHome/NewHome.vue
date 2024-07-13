@@ -16,24 +16,40 @@
                 </div>
                 <div class="lineCharts">
                     <BMSCharts />
-                    <PressureCharts />
+                
                     <WindCharts />
+                    <PressureCharts />
+                    <WindCharts2 />
                 </div>
-                <div class="pieCharts"></div>
+                <div class="pieCharts">
+                    <PowerStructure />
+                    <UsagePortion />
+                </div>
             </div>
-            <div class="rightSide"></div>
+            <div class="rightSide">
+                <Safe />
+                <EnvironmentWatch />
+                <Economic />
+            </div>
 
         </main>
     </div>
 </template>
 <script setup>
+import Economic from './Economic.vue';
+import Safe from './Safe.vue';
 import Bullet from './Bullet.vue';
 import EnergyWatch from './EnergyWatch.vue';
 import EnergyPortion from './charts/EnergyPortion.vue';
-import Diagram from './Diagram.vue';
+import Diagram from './Diagram2.vue';
 import BMSCharts from './charts/BMSCharts.vue';
 import PressureCharts from './charts/PressureCharts.vue';
 import WindCharts from './charts/WindCharts.vue';
+import PowerStructure from './charts/PowerStructure.vue';
+import UsagePortion from './charts/UsagePortion.vue';
+import EnvironmentWatch from './EnvironmentWatch.vue';
+import WindCharts2 from './charts/WindCharts2.vue';
+import Blanket from './Blanket.vue';
 </script>
 <style lang="scss" scoped>
 .page {
@@ -85,7 +101,7 @@ import WindCharts from './charts/WindCharts.vue';
     }
 
     .center {
-        border: 1px solid yellow;
+        // border: 1px solid yellow;
         flex: 1;
         display: flex;
         flex-direction: column;
@@ -108,7 +124,11 @@ import WindCharts from './charts/WindCharts.vue';
         }
 
         .pieCharts {
+            // border: 1px solid red;
             flex: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
     }
 

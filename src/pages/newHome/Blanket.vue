@@ -1,6 +1,6 @@
 <template>
-    <div class="energyModule">
-        <h2 class="title">能源监测</h2>
+    <div class="blanketModule">
+        <h2 class="title">园区简介</h2>
         <div class="bullet-container">
 
             <div class="bullet" v-for="(bullet, index) in bullets" :key="index">
@@ -12,10 +12,7 @@
             </div>
         </div>
     </div>
-
 </template>
-
-
 
 <script>
 export default {
@@ -23,55 +20,42 @@ export default {
         return {
             bullets: [
                 {
-                    title: "光伏日发电量",
-                    number: 1779.3,
-                    unit: "kWh",
+                    title: "温度",
+                    number: 20,
+                    unit: "℃",
                 },
                 {
-                    title: "风机日发电量",
-                    number: 2316.7,
-                    unit: "kWh",
+                    title: "PM2.5",
+                    number: 45,
+                    unit: "ug/m3",
                 },
                 {
-                    title: "可放电量",
-                    number: 1183.9,
-                    unit: "kWh",
+                    title: "日照",
+                    number: 302,
+                    unit: "W/m2",
                 },
                 {
-                    title: "可充电量",
-                    number: 1179.4,
-                    unit: "kWh",
-                },
-                {
-                    title: "充电桩当日充电",
-                    number: 0,
-                    unit: "kWh",
-                },
-                {
-                    title: "供电系统能效",
-                    number: 0.95,
+                    title: "湿度",
+                    number: 16,
                     unit: "%",
+                },
+                {
+                    title: "PM10",
+                    number: 77,
+                    unit: "ug/m3",
+                },
+                {
+                    title: "风速",
+                    number: 0,
+                    unit: "m/s",
                 },
             ],
         };
     },
-    mounted() {
-        this.startRandomFluctuation();
-    },
-    methods: {
-        startRandomFluctuation() {
-            setInterval(() => {
-                this.bullets.forEach((bullet) => {
-                    let fluctuation = (Math.random() - 0.45) * 0.03 * bullet.number;
-                    bullet.number = Math.round(bullet.number + fluctuation,2 );
-                });
-            }, 100);
-        },
-    },
 };
 </script>
 <style lang="scss" scoped>
-.energyModule {
+.blanketModule {
     color: #fff;
     display: flex;
     flex-direction: column;
@@ -79,7 +63,7 @@ export default {
     margin-top: 10px;
     border: 1px solid rgb(14, 86, 155);
     border-radius: 10px;
-    height: 260px;
+    height: 360px;
 
     .title {
         text-align: center;
@@ -94,8 +78,8 @@ export default {
     .bullet-container {
         width: 100%;
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(3, 1fr);
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 1fr);
 
         .bullet {
             border-radius: 5px;

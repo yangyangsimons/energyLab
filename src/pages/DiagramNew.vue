@@ -1,13 +1,9 @@
 <template>
   <div class="ls-root">
     <div class="top">
-      <div>
-        <div class="logo"></div>
-        <h1 class="title">园区微电网智慧能源管控平台</h1>
-      </div>
       <div class="menus">
         <div class="active">系统总览</div>
-        <div @click="proxy.$router.push('/watch')">运行监控</div>
+        <div class="active" @click="proxy.$router.push('/watch')">运行监控</div>
         <div hidden>设备详情</div>
       </div>
     </div>
@@ -48,12 +44,12 @@
       </div>
     </div>
 
-<!-- 
-    <div
+
+    <!-- <div
       style=" width: 100%; height: 35rem; display: flex; justify-content: center; align-items: center; display: none;">
       <w-ls-count :param-titles="['瞬时总有功功率']" :param-ids="[16400]"></w-ls-count>
 
-    </div> -->
+    </div>  -->
     <!-- <div class="curveChartsContainer" style=" width: 100%; height: 35rem;">
       <div id="curve">
         <BMSCharts></BMSCharts>
@@ -65,7 +61,6 @@
     </div> -->
   </div>
 </template>
-
 <script setup>
 import { ref, watch, getCurrentInstance, onMounted, onUnmounted } from 'vue';
 import WAcdc from '../components/energylab/WAcdc.vue';
@@ -77,6 +72,8 @@ import WRlc from '../components/energylab/WRlc.vue';
 import WEle from '../components/energylab/WEle.vue';
 import WSun from '../components/energylab/WSun.vue';
 import WLsCount from '../components/energylab/WLsCount.vue';
+import {mapActions} from 'vuex';
+import {useStore} from 'vuex';
 // import BMSCharts from './chart/BMSCharts.vue';
 // import WindCharts from './chart/WindCharts.vue';
 // import SunCharts from './chart/SunCharts.vue';
@@ -103,17 +100,18 @@ const runningChange = () => {
 };
 const toggleSunAnimation = () => {
   running.value.sun = !running.value.sun;
+  store.dispatch('toggleSwitch')
 };
 
 const toggleWindAnimation = () => {
   running.value.wind = !running.value.wind;
+  store.dispatch('toggleSwitch')
 };
 //监听状态变化
 watch(running.value, runningChange);
 
 //初始化太阳能和风能运行状态
 onMounted(runningChange);
-
 const routeTo = (to, title) => {
   ElMessage.success("正在运行监控屏幕上显示" + title);;
   sendAll({ message: 'routeTo', data: to });
@@ -127,12 +125,12 @@ const changeLine = (a, b) => {
 
 
 const xy = ref([
-  { x: (1366 - 120) / 2, y: 66 },//ac/dc
+  { x: (1366 - 210) / 2, y: 66 },//ac/dc
   { x: 102, y: 232 },//风车
   { x: 342, y: 232 },//直驱
   { x: 342, y: 77 },//电网
-  { x: 930, y: 232 },//RLC
-  { x: 930, y: 77 },//电池
+  { x: 830, y: 232 },//RLC
+  { x: 830, y: 77 },//电池
   { x: 102, y: 77 },//太阳能
 ]);
 
@@ -379,8 +377,9 @@ onUnmounted(() => {
 
 <style scoped lang="scss">
 .ls-root {
+  position: relative;
   width: 100%;
-  height: 100%;
+  height: 310px;
   background-color: #000;
   background-image: url(../assets/imgs/bg.png);
   background-size: cover;
@@ -390,29 +389,30 @@ onUnmounted(() => {
   --shadow-color: #FFF3;
 
   .top {
+    position: absolute;
+    top:-30px;
+    left: 20px;
     width: 100%;
     height: 100px;
-    background-image: url(../assets/imgs/bg-title.png);
-    background-size: cover;
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    .logo {
-      width: 80px;
-      height: 80px;
-      background-image: url(../assets/imgs/logo-column-2.png);
-      background-size: 100% 100%;
-    }
 
     .menus {
-      margin-right: 220px;
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      margin-right: 60px;
+      font-size: 14px !important;
+      padding: 0 !important;
     }
   }
 
   .devicesContainer {
+    margin-left: -75px;
     width: 100%;
-    height: 360px;
+    height: 295px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -421,10 +421,15 @@ onUnmounted(() => {
       position: relative;
       width: 70%;
       height: 360px;
+      .title{
+        display: none !important;
+        visibility: hidden !important;
+      }
     }
 
     .swt {
-      
+      margin-right: -20px;
+      margin-top: 50px;
       height: 200px;
       display: flex;
       flex-direction: column;
@@ -433,8 +438,8 @@ onUnmounted(() => {
       font-weight: bold;
 
       .glow-on-hover {
-        width: 220px;
-        height: 50px;
+        width: 160px;
+        height: 40px;
         border: none;
         outline: none;
         color: #fff;
